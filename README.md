@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Sui Wallet Adapter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an adapter for wallets on the Sui blockchain.
 
 ## Available Scripts
 
