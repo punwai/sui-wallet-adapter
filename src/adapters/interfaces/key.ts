@@ -1,0 +1,5 @@
+// Prov
+
+export interface WalletSignerCapabilities{
+
+}

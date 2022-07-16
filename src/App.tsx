@@ -1,23 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { root } from '.';
+import { ConnectWalletButton } from './ui/ConnectWalletButton';
+import { WalletSelectDialog } from './ui/WalletSelectionDialog';
 
 function App() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = (value: string) => {
+    setOpen(false);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ConnectWalletButton handleClick={handleClickOpen} />
+        <WalletSelectDialog open={open} onClose={handleClose}/>
       </header>
     </div>
   );
