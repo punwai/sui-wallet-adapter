@@ -24,7 +24,6 @@ export const WalletProvider: FC<WalletProviderProps> = ({
     children,
     supportedWallets
 }) => {
-    
     // Wallet that user chose
     const [wallet, setWallet]:
         [WalletAdapter | null, (wallet: WalletAdapter | null) => void]
@@ -33,6 +32,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({
         [boolean, (connected: boolean) => void] = useState(false)
     const [connecting, setConnecting]:
         [boolean, (connected: boolean) => void] = useState(false)
+
 
     const connect = useCallback(
         async () => {
@@ -47,37 +47,63 @@ export const WalletProvider: FC<WalletProviderProps> = ({
                 setConnected(false) 
             }
             setConnecting(false);
-        }, [wallet]);
+    }, [wallet]);
 
     const disconnect = async () => {
         setConnected(false);
-        setWallet(null);
+        setWalletAndUpdateStorage(null);
     }
 
-    const choose = (name: string) => {
+    // Use this to update wallet so that the chosen wallet persists after reload.
+    const setWalletAndUpdateStorage = useCallback((selectedWallet: Wallet | null) => {
+        setWallet(selectedWallet);
+        if (selectedWallet != null) {
+            localStorage.setItem('suiWallet', selectedWallet.adapter.name);
+        } else {
+            localStorage.removeItem('suiWallet');
+        }
+    }, []);
+
+    // Changes the selected wallet
+    const choose = useCallback((name: string) => {
         let newWallet = supportedWallets.find(wallet => wallet.adapter.name === name);
         if (newWallet) {
-            setWallet(newWallet);
+            setWalletAndUpdateStorage(newWallet);
         }
         connect();
-    }
+    }, [supportedWallets, connect, setWalletAndUpdateStorage]);
 
+    // If the wallet is null, check if there isn't anything in local storage
+    // Note: Optimize this.
+    useEffect(() => {
+        if (!wallet && !connected && !connecting) {
+            let walletItem = localStorage.getItem('suiWallet');
+            if (typeof walletItem === 'string') {
+                const items = walletItem;
+                choose(items);
+            }
+        }
+    }, [choose, connected, connecting, wallet]);
+
+    // Returns all accounts (i.e. public keys) managed by the selected wallet
     const getAccounts = async (): Promise<SuiAddress[]> => {
         if (wallet == null) throw Error('Wallet Not Connected');
         return await wallet.adapter.getAccounts();
     }
 
+    // Requests wallet for signature and executes if signed
     const executeMoveCall = async (transaction: MoveCallTransaction): Promise<TransactionResponse> => {
         if (wallet == null) throw Error('Wallet Not Connected');
         return await wallet.adapter.executeMoveCall(transaction);
     }
 
+    // Requests wallet for signature on serialized transaction and executes if signed
     const executeSerializedMoveCall = async (transactionBytes: Uint8Array): Promise<TransactionResponse> => {
         if (wallet == null) throw Error('Wallet Not Connected');
         return await wallet.adapter.executeSerializedMoveCall(transactionBytes);
     }
 
-    // // Whenever a user selects a new wallet, attempt to connect
+    // Attempt to connect whenever user selects a new wallet
     useEffect(() => {
         if (
             wallet != null && 
@@ -89,18 +115,15 @@ export const WalletProvider: FC<WalletProviderProps> = ({
     }, [connect, wallet, connecting, connected])
 
     // Whenever the user selectes a new wallet
-
     return (
         <WalletContext.Provider value={{
                 supportedWallets,
                 wallet,
                 connecting: connecting,
                 connected: connected,
-
                 select: choose, 
                 connect,
                 disconnect,
-
                 getAccounts,
                 executeMoveCall,
                 executeSerializedMoveCall

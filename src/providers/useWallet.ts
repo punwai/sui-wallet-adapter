@@ -6,9 +6,6 @@ export interface Wallet {
     adapter: WalletAdapter;
 }
 
-// 
-// We inject this thorugh the provider
-// 
 export interface WalletContextState {
     // Supported Wallets
     supportedWallets: Wallet[];
