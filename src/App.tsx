@@ -8,19 +8,28 @@ import { SuiWalletAdapter } from './adapters/adapters/sui-wallet/adapter';
 import { ManageWalletModal } from './ui/ManageWalletModal';
 import { WalletWrapper } from './ui/WalletWrapper';
 import { Button } from '@mui/material';
+import { MockWalletAdapter } from './adapters/adapters/mock-wallet/adapter';
+import { TestButton } from './example/TestButton';
 
 function App() {
   const supportedWallets: Wallet[] = [
     {
       adapter: new SuiWalletAdapter()
-    }
+    },
+    {
+      adapter: new MockWalletAdapter("Slope Wallet")
+    },
+    {
+      adapter: new MockWalletAdapter("Phantom Wallet")
+    },
   ];
 
   return (
     <div className="App">
       <header className="App-header">
         <WalletProvider supportedWallets={supportedWallets}>
-            <Button variant="contained">Send Transaction</Button><br/>
+            <TestButton/>
+            <br/>
             <WalletWrapper/>
         </WalletProvider>
       </header>

@@ -23,7 +23,7 @@ interface SuiWalletWindow {
 declare const window: SuiWalletWindow;
 
 // Stored as state somewhere (Probably in a place with generics )
-export class SuiWalletAdapter implements WalletCapabilities{
+export class MockWalletAdapter implements WalletCapabilities{
     connecting: boolean;
     connected: boolean;
 
@@ -37,7 +37,7 @@ export class SuiWalletAdapter implements WalletCapabilities{
         return window.suiWallet.executeSerializedMoveCall(transactionBytes);
     }
 
-    name = "Sui Wallet";
+    name: string; 
 
     async connect(): Promise<void> {
         this.connecting = true;
@@ -66,8 +66,9 @@ export class SuiWalletAdapter implements WalletCapabilities{
         console.log("disconnected");
     }
 
-    constructor() {
+    constructor(name: string) {
         this.connected = false;
         this.connecting = false;
+        this.name = name;
     }
 }

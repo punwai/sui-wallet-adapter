@@ -29,7 +29,7 @@ export function ConnectWalletModal(props: ConnectWalletButtonProps) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: 300,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -51,7 +51,7 @@ export function ConnectWalletModal(props: ConnectWalletButtonProps) {
                 <Modal open={open} onClose={handleClose}>
                     <>
                         {!connecting && <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                            <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
                                 Select Wallet
                             </Typography>
                             <List>
