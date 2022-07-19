@@ -4,6 +4,7 @@
  */
 
 import { createTheme, ThemeProvider } from "@mui/material"
+import { WalletAlerts } from "./Alert"
 import { ConnectWalletModal } from "./ConnectWalletModal"
 import { ManageWalletModal } from "./ManageWalletModal"
 
@@ -18,6 +19,7 @@ export function WalletWrapper({}) {
     return(
         <>
             <ThemeProvider theme={theme}>
+                {/* <WalletAlerts action="alerted"></WalletAlerts> */}
                 <ConnectWalletModal/>
                 <ManageWalletModal/>
             </ThemeProvider>
