@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.0",
     "@mysten/sui.js": "^0.6.0",
+    "@sui-wallet-adapter/all-wallets": "file:packages/adapters/integrations/all-wallets",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -18,7 +19,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "sui-base-wallet-adapter": "file:packages/adapters/base-adapter",
     "sui-wallet": "file:../sui2/wallet/dist",
+    "sui-wallet-adapter-react": "file:packages/react-providers",
+    "sui-wallet-adapter-ui": "file:packages/ui",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },

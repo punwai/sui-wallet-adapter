@@ -2,14 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { root } from '.';
-import { ConnectWalletModal } from './ui/ConnectWalletModal';
-import { Wallet, WalletProvider } from './providers';
-import { SuiWalletAdapter } from './adapters/adapters/sui-wallet/adapter';
-import { ManageWalletModal } from './ui/ManageWalletModal';
-import { WalletWrapper } from './ui/WalletWrapper';
+import { ConnectWalletModal } from 'sui-wallet-adapter-ui';
+import { Wallet, WalletProvider } from 'sui-wallet-adapter-react';
+import { SuiWalletAdapter, MockWalletAdapter} from '@sui-wallet-adapter/all-wallets';
+import { ManageWalletModal } from 'sui-wallet-adapter-ui';
+import { WalletWrapper } from 'sui-wallet-adapter-ui';
 import { Button } from '@mui/material';
-import { MockWalletAdapter } from './adapters/adapters/mock-wallet/adapter';
-import { TestButton } from './example/TestButton';
+import { TestButton } from './TestButton';
 
 function App() {
   const supportedWallets: Wallet[] = [
