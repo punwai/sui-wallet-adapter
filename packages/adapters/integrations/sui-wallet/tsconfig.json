@@ -5,6 +5,6 @@
       "outDir": "./lib",
       "noEmit": false,
       "module": "commonjs",
-      "declaration": true,
+      "declaration": true
   }
 }

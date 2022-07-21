@@ -1,11 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { root } from '.';
-import { ConnectWalletModal } from 'sui-wallet-adapter-ui';
 import { Wallet, WalletProvider } from 'sui-wallet-adapter-react';
 import { SuiWalletAdapter, MockWalletAdapter} from '@sui-wallet-adapter/all-wallets';
-import { ManageWalletModal } from 'sui-wallet-adapter-ui';
 import { WalletWrapper } from 'sui-wallet-adapter-ui';
 import { Button } from '@mui/material';
 import { TestButton } from './TestButton';
@@ -26,11 +23,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Button></Button>
+        <TestButton/>
         <WalletProvider supportedWallets={supportedWallets}>
-            <TestButton/>
-            <br/>
-            <WalletWrapper/>
+          Doug
+          <WalletWrapper/>
         </WalletProvider>
+        {/* <WalletProvider supportedWallets={supportedWallets}>
+             <br/>
+            <WalletWrapper/>
+        </WalletProvider> */}
       </header>
     </div>
   );

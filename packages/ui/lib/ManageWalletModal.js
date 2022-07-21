@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,17 +10,22 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { Box, Button, List, Modal, Typography, ListItemButton, ListItemText } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useWallet } from "sui-wallet-adapter-react";
-import SettingsIcon from '@mui/icons-material/Settings';
-export function ManageWalletModal(props) {
-    var _a = useWallet(), connected = _a.connected, disconnect = _a.disconnect, wallet = _a.wallet, getAccounts = _a.getAccounts;
-    var _b = useState(false), open = _b[0], setOpen = _b[1];
-    var _c = useState(""), account = _c[0], setAccount = _c[1];
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ManageWalletModal = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
+var material_1 = require("@mui/material");
+var react_1 = require("react");
+var sui_wallet_adapter_react_1 = require("sui-wallet-adapter-react");
+var Settings_1 = __importDefault(require("@mui/icons-material/Settings"));
+function ManageWalletModal(props) {
+    var _a = (0, sui_wallet_adapter_react_1.useWallet)(), connected = _a.connected, disconnect = _a.disconnect, wallet = _a.wallet, getAccounts = _a.getAccounts;
+    var _b = (0, react_1.useState)(false), open = _b[0], setOpen = _b[1];
+    var _c = (0, react_1.useState)(""), account = _c[0], setAccount = _c[1];
     var PK_DISPLAY_LENGTH = 10;
-    useEffect(function () {
+    (0, react_1.useEffect)(function () {
         getAccounts().then(function (accounts) {
             if (accounts && accounts.length) {
                 setAccount(accounts[0]);
@@ -56,6 +62,7 @@ export function ManageWalletModal(props) {
     var handleCopyAddress = function () {
         navigator.clipboard.writeText(account);
     };
-    return (_jsx(_Fragment, { children: (connected && wallet) &&
-            _jsxs(_Fragment, { children: [_jsxs(Button, __assign({ color: "primary", variant: "contained", style: ManageWalletButtonStyle, onClick: handleClickOpen }, { children: [_jsx(SettingsIcon, {}), " ", account.slice(0, PK_DISPLAY_LENGTH), "..."] })), _jsx(Modal, __assign({ open: open, onClose: handleClose }, { children: _jsxs(Box, __assign({ sx: style }, { children: [_jsx(Typography, { id: "modal-modal-title", variant: "h6", component: "h2" }), _jsxs(List, { children: [_jsx(ListItemButton, __assign({ onClick: handleClickDisconnect }, { children: _jsx(ListItemText, { primary: "Disconnect" }) })), _jsx(ListItemButton, __assign({ onClick: handleCopyAddress }, { children: _jsx(ListItemText, { primary: "Copy Address" }) }))] })] })) }))] }) }));
+    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (connected && wallet) &&
+            (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)(material_1.Button, __assign({ color: "primary", variant: "contained", style: ManageWalletButtonStyle, onClick: handleClickOpen }, { children: [(0, jsx_runtime_1.jsx)(Settings_1.default, {}), " ", account.slice(0, PK_DISPLAY_LENGTH), "..."] })), (0, jsx_runtime_1.jsx)(material_1.Modal, __assign({ open: open, onClose: handleClose }, { children: (0, jsx_runtime_1.jsxs)(material_1.Box, __assign({ sx: style }, { children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { id: "modal-modal-title", variant: "h6", component: "h2" }), (0, jsx_runtime_1.jsxs)(material_1.List, { children: [(0, jsx_runtime_1.jsx)(material_1.ListItemButton, __assign({ onClick: handleClickDisconnect }, { children: (0, jsx_runtime_1.jsx)(material_1.ListItemText, { primary: "Disconnect" }) })), (0, jsx_runtime_1.jsx)(material_1.ListItemButton, __assign({ onClick: handleCopyAddress }, { children: (0, jsx_runtime_1.jsx)(material_1.ListItemText, { primary: "Copy Address" }) }))] })] })) }))] }) }));
 }
+exports.ManageWalletModal = ManageWalletModal;

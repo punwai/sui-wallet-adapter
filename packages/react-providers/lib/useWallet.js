@@ -1,4 +1,7 @@
-import { createContext, useContext } from 'react';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useWallet = exports.WalletContext = void 0;
+var react_1 = require("react");
 var EMPTY_ARRAY = [];
 var DEFAULT_CONTEXT = {
     supportedWallets: [],
@@ -51,7 +54,8 @@ function constructMissingProviderErrorMessage(action, valueName) {
         ' as an ancestor of the component that uses ' +
         'WalletContext');
 }
-export var WalletContext = createContext(DEFAULT_CONTEXT);
-export function useWallet() {
-    return useContext(WalletContext);
+exports.WalletContext = (0, react_1.createContext)(DEFAULT_CONTEXT);
+function useWallet() {
+    return (0, react_1.useContext)(exports.WalletContext);
 }
+exports.useWallet = useWallet;

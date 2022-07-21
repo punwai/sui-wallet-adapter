@@ -3,9 +3,9 @@
  * Import this component where you desire your "Connect Wallet" button to be.
  */
 
-import { createTheme, ThemeProvider } from "@mui/material"
-import { ConnectWalletModal } from "./ConnectWalletModal"
-import { ManageWalletModal } from "./ManageWalletModal"
+import { Button, createTheme, ThemeProvider } from "@mui/material"
+// // import { ConnectWalletModal } from "./ConnectWalletModal"
+// import { ManageWalletModal } from "./ManageWalletModal"
 
 
 const theme = createTheme({
@@ -17,10 +17,11 @@ const theme = createTheme({
 export function WalletWrapper({}) {
     return(
         <>
-            <ThemeProvider theme={theme}>
-                <ConnectWalletModal/>
-                <ManageWalletModal/>
-            </ThemeProvider>
+            <Button></Button>
+            {/* <ThemeProvider theme={theme}> */}
+                {/* <ConnectWalletModal/> */}
+                {/* <ManageWalletModal/> */}
+            {/* </ThemeProvider> */}
         </>
     )
 }

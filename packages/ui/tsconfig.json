@@ -3,6 +3,8 @@
   "include": ["src"],
   "compilerOptions": {
       "outDir": "./lib",
-      "noEmit": false
+      "noEmit": false,
+      "module": "commonjs",
+      "declaration": true
   }
 }

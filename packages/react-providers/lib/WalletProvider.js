@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -45,21 +46,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { jsx as _jsx } from "react/jsx-runtime";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WalletProvider = void 0;
+var jsx_runtime_1 = require("react/jsx-runtime");
 // /*
 //  * This provider provides an API for the 
 //  * 
 //  * 
 //  */
-import { useCallback, useEffect, useState } from "react";
-import { WalletContext } from './useWallet';
-export var WalletProvider = function (_a) {
+var react_1 = require("react");
+var useWallet_1 = require("./useWallet");
+var WalletProvider = function (_a) {
     var children = _a.children, supportedWallets = _a.supportedWallets;
     // Wallet that user chose
-    var _b = useState(null), wallet = _b[0], setWallet = _b[1];
-    var _c = useState(false), connected = _c[0], setConnected = _c[1];
-    var _d = useState(false), connecting = _d[0], setConnecting = _d[1];
-    var connect = useCallback(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var _b = (0, react_1.useState)(null), wallet = _b[0], setWallet = _b[1];
+    var _c = (0, react_1.useState)(false), connected = _c[0], setConnected = _c[1];
+    var _d = (0, react_1.useState)(false), connecting = _d[0], setConnecting = _d[1];
+    var connect = (0, react_1.useCallback)(function () { return __awaiter(void 0, void 0, void 0, function () {
         var e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -94,7 +97,7 @@ export var WalletProvider = function (_a) {
         });
     }); };
     // Use this to update wallet so that the chosen wallet persists after reload.
-    var setWalletAndUpdateStorage = useCallback(function (selectedWallet) {
+    var setWalletAndUpdateStorage = (0, react_1.useCallback)(function (selectedWallet) {
         setWallet(selectedWallet);
         if (selectedWallet != null) {
             localStorage.setItem('suiWallet', selectedWallet.adapter.name);
@@ -104,7 +107,7 @@ export var WalletProvider = function (_a) {
         }
     }, []);
     // Changes the selected wallet
-    var choose = useCallback(function (name) {
+    var choose = (0, react_1.useCallback)(function (name) {
         var newWallet = supportedWallets.find(function (wallet) { return wallet.adapter.name === name; });
         if (newWallet) {
             setWalletAndUpdateStorage(newWallet);
@@ -113,7 +116,7 @@ export var WalletProvider = function (_a) {
     }, [supportedWallets, connect, setWalletAndUpdateStorage]);
     // If the wallet is null, check if there isn't anything in local storage
     // Note: Optimize this.
-    useEffect(function () {
+    (0, react_1.useEffect)(function () {
         if (!wallet && !connected && !connecting) {
             var walletItem = localStorage.getItem('suiWallet');
             if (typeof walletItem === 'string') {
@@ -159,7 +162,7 @@ export var WalletProvider = function (_a) {
         });
     }); };
     // Attempt to connect whenever user selects a new wallet
-    useEffect(function () {
+    (0, react_1.useEffect)(function () {
         if (wallet != null &&
             connecting !== true &&
             connected !== true) {
@@ -167,7 +170,7 @@ export var WalletProvider = function (_a) {
         }
     }, [connect, wallet, connecting, connected]);
     // Whenever the user selectes a new wallet
-    return (_jsx(WalletContext.Provider, __assign({ value: {
+    return ((0, jsx_runtime_1.jsx)(useWallet_1.WalletContext.Provider, __assign({ value: {
             supportedWallets: supportedWallets,
             wallet: wallet,
             connecting: connecting,
@@ -180,3 +183,4 @@ export var WalletProvider = function (_a) {
             executeSerializedMoveCall: executeSerializedMoveCall
         } }, { children: children })));
 };
+exports.WalletProvider = WalletProvider;
