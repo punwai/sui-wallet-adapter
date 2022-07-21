@@ -2,7 +2,7 @@
   "name": "@sui-wallet-adapter/sui-wallet",
   "version": "1.0.0",
   "description": "Integration of Sui Wallet into the Sui Wallet Adapter",
-  "main": "src/index.ts",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

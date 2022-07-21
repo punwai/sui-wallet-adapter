@@ -28,6 +28,8 @@ export interface WalletContextState {
 const EMPTY_ARRAY: ReadonlyArray<never> = [];
 
 const DEFAULT_CONTEXT = {
+    supportedWallets: [],
+    wallet: null,
     connecting: false,
     connected: false,
     select(_name: string) {

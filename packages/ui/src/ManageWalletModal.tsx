@@ -14,7 +14,7 @@ export function ManageWalletModal(props: ManageWalletButtonProps) {
     const PK_DISPLAY_LENGTH = 10;
 
     useEffect(() => {
-        getAccounts().then((accounts) => {
+        getAccounts().then((accounts: any) => {
                 if(accounts && accounts.length) {
                     setAccount(accounts[0])
                 }

@@ -1,6 +1,8 @@
 import { createContext, useContext } from 'react';
 var EMPTY_ARRAY = [];
 var DEFAULT_CONTEXT = {
+    supportedWallets: [],
+    wallet: null,
     connecting: false,
     connected: false,
     select: function (_name) {

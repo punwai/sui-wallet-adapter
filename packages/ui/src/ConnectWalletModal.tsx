@@ -56,7 +56,7 @@ export function ConnectWalletModal(props: ConnectWalletButtonProps) {
                             </Typography>
                             <List>
                                 {
-                                    supportedWallets.map(w =>
+                                    supportedWallets.map((w: any) =>
                                         <ListItemButton onClick={() => handleConnect(w.adapter.name)}>
                                             <ListItemText primary={w.adapter.name}/>
                                         </ListItemButton>
@@ -66,7 +66,7 @@ export function ConnectWalletModal(props: ConnectWalletButtonProps) {
                         </Box>}
                         {connecting && <Box sx={style}>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Connecting to { wallet ? wallet.adapter.name : "Wallet"}
+                                Connecting to wallet.
                             </Typography>
                             <CircularProgress/>
                         </Box>}
